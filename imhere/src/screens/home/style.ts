@@ -23,12 +23,14 @@ export const styles = StyleSheet.create({
 
   },
     input: {
+      flex: 1,
       height: 56,
       backgroundColor: 'rgb(59, 58, 58)',
       borderRadius: 5,
       color: 'rgb(255, 255, 255)',
       padding: 16,
       fontSize: 16,
+      marginRight: 12,
     
     },
 
@@ -41,10 +43,21 @@ export const styles = StyleSheet.create({
       width: 56,
       height: 56,
       borderRadius: 5,
-      backgroundColor: 'rgb(4, 244, 68)',
+      backgroundColor: 'rgb(23, 177, 64)',
+      alignItems: 'center',
+      justifyContent: 'center',
 
 
+    },
+
+    form:{
+      width: '100%',
+      flexDirection: 'row',
+      marginTop: 36,
+      marginBottom: 42,
+      
     }
+
 
 
   

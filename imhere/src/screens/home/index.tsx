@@ -5,6 +5,13 @@ import { styles } from './style';
 
 
 export  function Home() {
+
+  function handleParrticipantAdd() {
+    alert('voce clicou no botao')
+  }
+
+
+
   return (
    
    <View style ={styles.container}>
@@ -19,6 +26,7 @@ export  function Home() {
 
 
 
+    <View style ={styles.form}>
 
 
       <TextInput 
@@ -31,11 +39,11 @@ export  function Home() {
       
       /> 
 
-      <TouchableOpacity style={styles.Button}>
+      <TouchableOpacity style={styles.Button} onPress ={handleParrticipantAdd}>
 
       <Text style ={styles.ButtonText}>
         
-        Clique
+        +
 
       </Text>
 
@@ -43,7 +51,11 @@ export  function Home() {
       </TouchableOpacity>
 
 
-      
+      </View>
+
+
+
+
     </View>
   )
 }
