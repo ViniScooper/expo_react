@@ -1,4 +1,4 @@
-import { StyleSheet } from 'react-native';
+import {StyleSheet } from 'react-native';
 
 export const styles = StyleSheet.create({
   container: {
@@ -32,17 +32,19 @@ export const styles = StyleSheet.create({
     
     },
 
-    buttonText:{
+    ButtonText:{
       color: 'rgb(255, 255, 255)',
-      fontSize: 16,
-      fontWeight: 'bold',
-      textAlign: 'center',
-      marginTop: 20,
-      backgroundColor: 'rgb(0, 122, 255)',
-      padding: 16,
+      fontSize: 24,
+  
+    },
+    Button :{
+      width: 56,
+      height: 56,
       borderRadius: 5,
-    }
+      backgroundColor: 'rgb(4, 244, 68)',
 
+
+    }
 
 
   

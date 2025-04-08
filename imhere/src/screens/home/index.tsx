@@ -31,9 +31,9 @@ export  function Home() {
       
       /> 
 
-      <TouchableOpacity>
+      <TouchableOpacity style={styles.Button}>
 
-      <Text style ={styles.buttonText}>
+      <Text style ={styles.ButtonText}>
         
         Clique
 
