@@ -58,8 +58,11 @@ export  function Home() {
       </View>
 
 
-      <Participant/>
+      <Participant name="rodrigo"/>
+     
+      <Participant  name="vini"/>
 
+      <Participant  name="pedro"/>
 
 
 
