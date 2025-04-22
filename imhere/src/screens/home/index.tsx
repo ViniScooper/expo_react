@@ -1,4 +1,8 @@
+import React from 'react'
+
 import { Text , View,TextInput,TouchableOpacity} from 'react-native';
+
+import { Participant } from '../../components/Participant'; 
 
 import { styles } from './style';
 
@@ -52,6 +56,9 @@ export  function Home() {
 
 
       </View>
+
+
+      <Participant/>
 
 
 
