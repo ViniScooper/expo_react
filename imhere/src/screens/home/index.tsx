@@ -10,8 +10,20 @@ import { styles } from './style';
 
 export  function Home() {
 
+  const participants = [
+    { name: 'Rodrigo' },
+    { name: 'Lucas' },
+    { name: 'Gustavo' },
+    { name: 'Gabriel' },
+  ]
+
   function handleParrticipantAdd() {
     alert('voce clicou no botao')
+  }
+
+  function handleParticipantRemove(name: string) {
+    alert(`voce clicou no botao de remover ${name}`)
+    
   }
 
 
@@ -55,17 +67,33 @@ export  function Home() {
       </TouchableOpacity>
 
 
+
+
       </View>
 
 
-      <Participant name="rodrigo"/>
-     
-      <Participant  name="vini"/>
+      {
+        participants.map(participant => (
+          <Participant 
+          key={participant.name} 
+          name={participant.name} 
+          onRemove={() => handleParticipantRemove(participant.name)} 
+          />
+        ))
 
-      <Participant  name="pedro"/>
+      }
+
+
+      <Participant name="rodrigo" onRemove={() => handleParticipantRemove("rodrigo")} />
+     
+      
 
 
 
     </View>
+
+
+
+
   )
 }

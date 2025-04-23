@@ -4,9 +4,10 @@ import { styles } from './styles';
 
 type Props = {
     name: string;
+    onRemove: () => void;
 }
 
-export function Participant({name}: Props) {
+export function Participant({name,onRemove}: Props) {
 
     return(
         
@@ -16,7 +17,7 @@ export function Participant({name}: Props) {
             </Text>
 
 
-        <TouchableOpacity style={styles.Button}>
+        <TouchableOpacity style={styles.Button} onPress={onRemove}>
 
         <Text style ={styles.ButtonText}>
         
