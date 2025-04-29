@@ -11,12 +11,18 @@ import { styles } from './style';
 export function Home() {
   const [participants, setParticipants] = useState<string[]>([]); // Array de strings
 
+  const [participantName,setParticipantName] = useState(''); // String
+
+
+
+
   function handleParrticipantAdd() {
-    if (participants.includes("joao")) {
+    if (participants.includes(participantName)) {
       return Alert.alert("Título", "Já existe um participante com esse nome");
     }
-
-    setParticipants(prevState => [...prevState, "joao"]); // Adiciona "joao" ao array
+    setParticipants(prevState =>[...prevState,participantName]);
+    setParticipantName(''); // Limpa o campo de texto após adicionar o participante
+    
   }
 
   function handleParticipantRemove(name: string) {
@@ -61,6 +67,8 @@ export function Home() {
           placeholder="Nome do participante"
           placeholderTextColor="rgb(109, 109, 109)"
           keyboardType='default'
+          onChangeText={setParticipantName}
+          value={participantName}
 
 
         />
