@@ -14,15 +14,22 @@ export function Home() {
   const [participantName,setParticipantName] = useState(''); // String
 
 
+  function handleParticipantAdd() {
+    const trimmedName = participantName.trim(); // Remove espaços extras no início e no final
 
-
-  function handleParrticipantAdd() {
-    if (participants.includes(participantName)) {
-      return Alert.alert("Título", "Já existe um participante com esse nome");
+    // Verifica se o nome está vazio
+    if (!trimmedName) {
+      return Alert.alert("Erro", "Por favor, insira um nome válido");
     }
-    setParticipants(prevState =>[...prevState,participantName]);
-    setParticipantName(''); // Limpa o campo de texto após adicionar o participante
-    
+
+    // Verifica duplicatas (case-insensitive e ignora espaços extras)
+    if (participants.some(name => name.trim().toLowerCase() === trimmedName.toLowerCase())) {
+      return Alert.alert("Duplicado", "Já existe um participante com esse nome");
+    }
+
+    // Adiciona o participante com o nome limpo
+    setParticipants(prevState => [...prevState, trimmedName]);
+    setParticipantName(''); // Limpa o campo de texto após adicionar
   }
 
   function handleParticipantRemove(name: string) {
@@ -73,7 +80,7 @@ export function Home() {
 
         />
 
-        <TouchableOpacity style={styles.Button} onPress={handleParrticipantAdd}>
+        <TouchableOpacity style={styles.Button} onPress={handleParticipantAdd}>
 
           <Text style={styles.ButtonText}>
 
@@ -101,6 +108,8 @@ export function Home() {
          )}
          showsVerticalScrollIndicator={false}
       />
+
+      
 
 
 
