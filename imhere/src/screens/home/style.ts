@@ -56,10 +56,21 @@ export const styles = StyleSheet.create({
       marginTop: 36,
       marginBottom: 42,
       
-    }
+    },
 
-
-
+    dateButton: {
+      backgroundColor: 'rgb(60, 60, 60)', // Preto, igual ao fundo principal
+      padding: 10,
+      borderRadius: 50,
+      marginVertical: 10,
+      marginLeft: -5, // Move um pouco para a esquerda
+      marginTop: 20, // Move um pouco para baixo
+      alignItems: 'center',
+    },
+    dateButtonText: {
+      color: 'rgb(255, 255, 255)', // Branco, igual aos outros textos
+      fontSize: 20,
+    },
   
   });
 

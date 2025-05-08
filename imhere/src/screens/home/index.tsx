@@ -1,29 +1,29 @@
 import React, { useState } from 'react';
-import { Text, View, TextInput, TouchableOpacity, FlatList, Alert } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, FlatList, Alert, Platform } from 'react-native';
+import DateTimePicker from '@react-native-community/datetimepicker';
 import { Participant } from '../../components/Participant';
 import { styles } from './style';
 
 export function Home() {
-  const [participants, setParticipants] = useState<string[]>([]); // Array de strings
-  const [participantName, setParticipantName] = useState(''); // String
-  const [eventName, setEventName] = useState('Nome do evento'); // Estado para o nome do evento
+  const [participants, setParticipants] = useState<string[]>([]);
+  const [participantName, setParticipantName] = useState('');
+  const [eventName, setEventName] = useState('');
+  const [eventDate, setEventDate] = useState<Date | null>(null); // Inicializa como null
+  const [showDatePicker, setShowDatePicker] = useState(false);
 
   function handleParticipantAdd() {
-    const trimmedName = participantName.trim(); // Remove espaços extras no início e no final
+    const trimmedName = participantName.trim();
 
-    // Verifica se o nome está vazio
     if (!trimmedName) {
       return Alert.alert('Erro', 'Por favor, insira um nome válido');
     }
 
-    // Verifica duplicatas (case-insensitive e ignora espaços extras)
     if (participants.some(name => name.trim().toLowerCase() === trimmedName.toLowerCase())) {
       return Alert.alert('Duplicado', 'Já existe um participante com esse nome');
     }
 
-    // Adiciona o participante com o nome limpo
     setParticipants(prevState => [...prevState, trimmedName]);
-    setParticipantName(''); // Limpa o campo de texto após adicionar
+    setParticipantName('');
   }
 
   function handleParticipantRemove(name: string) {
@@ -42,18 +42,38 @@ export function Home() {
     ]);
   }
 
+  function handleDateChange(event: any, selectedDate?: Date) {
+    setShowDatePicker(false);
+    if (selectedDate) {
+      setEventDate(selectedDate); // Define a data selecionada
+    }
+  }
+
   return (
     <View style={styles.container}>
-      {/* Nome do evento editável */}
       <TextInput
-        style={styles.eventName} // Reutilizando o estilo do nome do evento
+        style={styles.eventName}
         value={eventName}
         onChangeText={setEventName}
         placeholder="Digite o nome do evento"
         placeholderTextColor="rgb(109, 109, 109)"
       />
 
-      <Text style={styles.eventDate}>Segunda, 07 de abril de 2025.</Text>
+      {/* Botão para selecionar a data */}
+      <TouchableOpacity style={styles.dateButton} onPress={() => setShowDatePicker(true)}>
+        <Text style={styles.dateButtonText}>
+          {eventDate ? `Data do evento: ${eventDate.toLocaleDateString('pt-BR')}` : 'Adicione a data do evento'}
+        </Text>
+      </TouchableOpacity>
+
+      {showDatePicker && (
+        <DateTimePicker
+          value={eventDate || new Date()} // Usa a data atual como fallback
+          mode="date"
+          display={Platform.OS === 'ios' ? 'spinner' : 'default'}
+          onChange={handleDateChange}
+        />
+      )}
 
       <View style={styles.form}>
         <TextInput
