@@ -71,6 +71,54 @@ export const styles = StyleSheet.create({
       color: 'rgb(255, 255, 255)', // Branco, igual aos outros textos
       fontSize: 20,
     },
+
+
+
+
+    
+  // Novo estilo para o botão de horário
+  timeButton: {
+    backgroundColor: 'rgb(60, 60, 60)', // Preto, igual ao botão de data
+    padding: 10,
+    borderRadius: 50,
+    marginVertical: 10,
+    marginLeft: -5, // Move um pouco para a esquerda
+    marginTop: 10, // Ajuste de margem para separação
+    alignItems: 'center',
+  },
+
+  timeButtonText: {
+    color: 'rgb(255, 255, 255)', // Branco, igual aos outros textos
+    fontSize: 20,
+  },
+
+  saveButton: {
+    backgroundColor: 'rgb(26, 141, 18)', // Verde para destacar o botão
+    padding: 15,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 10, // Reduzido para mover o botão mais para cima
+    marginBottom: 30, // Adicionado para separar do próximo elemento
+  },
+
+  saveButtonText: {
+    color: 'rgb(255, 255, 255)', // Branco para o texto
+    fontSize: 18,
+    fontWeight: 'bold',
+  },
+
+  clearButton: {
+    backgroundColor: 'red',
+    padding: 10,
+    borderRadius: 5,
+    alignItems: 'center',
+    marginTop: 10,
+  },
+  clearButtonText: {
+    color: 'white',
+    fontSize: 16,
+    fontWeight: 'bold',
+  },
   
   });
 
