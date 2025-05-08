@@ -10,11 +10,16 @@ export function Events() {
       const storedData = await AsyncStorage.getItem('@eventData');
       if (storedData) {
         const parsedData = JSON.parse(storedData);
-        setEvents(parsedData); // Define a lista de eventos
+        if (Array.isArray(parsedData)) {
+          setEvents(parsedData); // Define a lista de eventos
+        } else {
+          setEvents([]); // Garante que a lista fique vazia se os dados não forem válidos
+        }
       } else {
         setEvents([]); // Garante que a lista fique vazia se não houver dados
       }
     } catch (error) {
+      console.error('Erro ao carregar eventos:', error);
       Alert.alert('Erro', 'Não foi possível carregar os eventos');
     }
   }
@@ -26,6 +31,7 @@ export function Events() {
       await AsyncStorage.setItem('@eventData', JSON.stringify(updatedEvents)); // Salva a lista atualizada no cache
       Alert.alert('Sucesso', 'Evento apagado com sucesso!');
     } catch (error) {
+      console.error('Erro ao apagar evento:', error);
       Alert.alert('Erro', 'Não foi possível apagar o evento');
     }
   }

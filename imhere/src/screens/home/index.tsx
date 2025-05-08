@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from 'react';
-import { Text, View, TextInput, TouchableOpacity, FlatList, Alert, Platform, SafeAreaView, StatusBar } from 'react-native';
+import { Text, View, TextInput, TouchableOpacity, FlatList, Alert, Platform, SafeAreaView } from 'react-native';
 import AsyncStorage from '@react-native-async-storage/async-storage';
 import DateTimePicker from '@react-native-community/datetimepicker';
 import { Participant } from '../../components/Participant';
@@ -27,11 +27,25 @@ export function Home() {
       const storedData = await AsyncStorage.getItem('@eventData');
       const existingEvents = storedData ? JSON.parse(storedData) : [];
 
+      // Verifica se o evento já existe na lista
+      const isDuplicate = existingEvents.some(
+        (event: any) =>
+          event.eventName === newEvent.eventName &&
+          event.eventDate === newEvent.eventDate &&
+          event.eventTime === newEvent.eventTime
+      );
+
+      if (isDuplicate) {
+        Alert.alert('Erro', 'Este evento já foi salvo.');
+        return;
+      }
+
       // Adiciona o novo evento à lista
       const updatedEvents = [...existingEvents, newEvent];
 
       // Salva a lista atualizada no cache
       await AsyncStorage.setItem('@eventData', JSON.stringify(updatedEvents));
+      Alert.alert('Sucesso', 'Evento salvo com sucesso!');
     } catch (error) {
       Alert.alert('Erro', 'Não foi possível salvar os dados');
     }
@@ -68,10 +82,6 @@ export function Home() {
   useEffect(() => {
     loadDataFromCache();
   }, []);
-
-  useEffect(() => {
-    saveDataToCache();
-  }, [participants, eventName, eventDate, eventTime]);
 
   function handleParticipantAdd() {
     const trimmedName = participantName.trim();
@@ -189,17 +199,14 @@ export function Home() {
             await saveDataToCache(); // Aguarda o salvamento no cache
             Alert.alert('Sucesso', 'Os dados foram salvos no cache com sucesso!');
             // Limpa os campos após salvar
-            setTimeout(() => {
-              setParticipants([]);
-              setEventName('');
-              setEventDate(null);
-              setEventTime(null);
-            }, 500); // Adiciona um pequeno atraso para garantir o salvamento
+            setParticipants([]);
+            setEventName('');
+            setEventDate(null);
+            setEventTime(null);
           }}
         >
           <Text style={styles.saveButtonText}>Salvar Evento</Text>
         </TouchableOpacity>
-        
       </SafeAreaView>
     </>
   );
