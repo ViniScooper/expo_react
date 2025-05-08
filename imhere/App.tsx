@@ -9,11 +9,21 @@ const Drawer = createDrawerNavigator();
 export default function App() {
   return (
     <NavigationContainer>
-      <Drawer.Navigator initialRouteName="Home">
-        <Drawer.Screen name="Home" component={Home} />
-        <Drawer.Screen name="Eventos" component={Events} />
-      </Drawer.Navigator>
-    </NavigationContainer>
+    <Drawer.Navigator
+      screenOptions={{
+        headerStyle: { backgroundColor: 'rgb(82, 78, 78)' }, // Cor do cabeçalho
+        headerTintColor: 'white', // Cor do texto do cabeçalho
+        drawerStyle: {
+          backgroundColor: 'rgb(82, 78, 78)', // Fundo do Drawer
+        },
+        drawerActiveTintColor: 'white', // Cor do texto do item ativo
+        drawerInactiveTintColor: 'rgb(0, 0, 0)', // Cor do texto do item inativo
+      }}
+    >
+      <Drawer.Screen name="Home" component={Home} />
+      <Drawer.Screen name="Events" component={Events} />
+    </Drawer.Navigator>
+  </NavigationContainer>
   );
 }
 
