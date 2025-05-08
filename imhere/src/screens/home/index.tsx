@@ -14,6 +14,8 @@ export function Home() {
   const [participantName,setParticipantName] = useState(''); // String
 
 
+
+
   function handleParticipantAdd() {
     const trimmedName = participantName.trim(); // Remove espaços extras no início e no final
 
